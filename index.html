@@ -3,129 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQUAD MANAGEMENT - ANTI-RATAS</title>
+    <title>SQUAD BAN - PIO LA RATA</title>
     <style>
         :root {
             --ab-orange: #ff4d00;
-            --dark-bg: #0a0a0a;
-            --panel-bg: #151515;
+            --dark-bg: #050505;
+            --danger: #ff0000;
         }
 
         body {
             background-color: var(--dark-bg);
-            color: #eeeeee;
-            font-family: 'Oswald', sans-serif; /* Si no tienes Oswald, usará sans-serif */
+            color: #ffffff;
+            font-family: 'Impact', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            text-transform: uppercase;
+            background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
+            background-size: 30px 30px;
         }
 
-        .interface {
-            width: 90%;
-            max-width: 550px;
-            background: var(--panel-bg);
-            border: 1px solid #333;
-            border-top: 4px solid var(--ab-orange);
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        .main-card {
+            width: 95%;
+            max-width: 500px;
+            background: #111;
+            border: 2px solid #333;
+            border-left: 8px solid var(--ab-orange);
+            padding: 40px;
+            box-shadow: 0 0 50px rgba(0,0,0,1);
         }
 
-        .header {
-            border-bottom: 1px solid #444;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .status-red {
-            color: #ff3333;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+        .header-status {
+            color: var(--danger);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            display: block;
         }
 
         h1 {
-            margin: 5px 0;
-            font-size: 2rem;
+            font-size: 3rem;
+            margin: 0;
             color: var(--ab-orange);
+            line-height: 1;
         }
 
-        .warning-text {
-            line-height: 1.5;
+        .target-name {
+            background: var(--danger);
+            color: white;
+            padding: 2px 10px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .boche-venezolano {
+            margin: 25px 0;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
             font-size: 1.1rem;
-            color: #bbb;
+            color: #ddd;
         }
 
-        .boche-box {
-            background: rgba(255, 77, 0, 0.05);
-            border: 1px solid rgba(255, 77, 0, 0.2);
+        .warning-box {
+            border: 1px dashed var(--danger);
             padding: 15px;
             margin: 20px 0;
-            color: #fff;
+            background: rgba(255, 0, 0, 0.1);
         }
 
-        .highlight {
-            color: var(--ab-orange);
-            font-weight: bold;
-        }
-
-        .btn-kick {
+        .btn-expulsar {
             width: 100%;
-            background: var(--ab-orange);
-            color: black;
-            border: none;
+            background: transparent;
+            color: var(--ab-orange);
+            border: 2px solid var(--ab-orange);
             padding: 15px;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
+            text-transform: uppercase;
+            transition: all 0.3s;
         }
 
-        .btn-kick:hover {
-            background: #e64500;
-            transform: scale(1.02);
+        .btn-expulsar:hover {
+            background: var(--ab-orange);
+            color: black;
+            box-shadow: 0 0 20px var(--ab-orange);
         }
 
         .footer {
-            margin-top: 15px;
+            margin-top: 20px;
             font-size: 0.7rem;
-            color: #555;
-            text-align: right;
+            color: #444;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
-    <div class="interface">
-        <div class="header">
-            <span class="status-red">● ALERTA DE REPORTE: COMPORTAMIENTO TÓXICO</span>
-            <h1>OBJETIVO: ENMANUEL</h1>
-        </div>
+    <div class="main-card">
+        <span class="header-status">ALERTA DE EXTRACCIÓN BLOQUEADA</span>
+        <h1>¡YA BASTA, PIO!</h1>
+        <div class="target-name">SUJETO: PIO (EL RATA DE LAS MISCELÁNEAS)</div>
 
-        <div class="warning-text">
-            <p>Loco, ya el coro se cansó de tu mala fe. Cada vez que entramos a la zona, tú eres el primero que corre a <strong>robarse las misceláneas</strong> que no son tuyas.</p>
+        <div class="boche-venezolano">
+            <p>Mira, <strong>Pio</strong>, ya el grupo está obstinado de tu "manguareo". Estás pendiente de puro agarrar las misceláneas ajenas mientras uno se está batiendo el cobre en el mapa.</p>
             
-            <p>Sigue de vivo, que <span class="highlight">para la próxima te vamos a dar una galleta</span> que te va a quitar las ganas de lootear ajeno.</p>
+            <div class="warning-box">
+                "No te queremos ver más en el squad, mamagüebo. Sigue de liso que <strong>para la próxima te vamos a meter una galleta</strong> que te va a dejar las orejas pitando."
+            </div>
         </div>
 
-        <div class="boche-box">
-            "Enmanuel, deja de ser tan <strong>MAMAÑEMA</strong>. Aquí se viene a meter mano en equipo, no a ser una rata de alcantarilla. Estás fuera."
-        </div>
-
-        <button class="btn-kick" onclick="darBala()">
-            EXPULSAR RATA DEL SQUAD
+        <button class="btn-expulsar" onclick="mandarAlCipote()">
+            SACAR A ESTE MMG DEL GRUPO
         </button>
 
         <div class="footer">
-            SISTEMA DE SEGURIDAD DARK ZONE | DOMINICAN SQUAD ONLY
+            ARENA BREAKOUT VENEZUELA | ANTI-LISO SYSTEM
         </div>
     </div>
 
     <script>
-        function darBala() {
-            // El mensaje que pediste
-            alert("ENMANUEL ELIMINADO. ¡Y te vamos a meter los dedos!");
+        function mandarAlCipote() {
+            // El mensaje que pediste con el toque venezolano
+            alert("¡PIO FUERA POR RATA! Y te vamos a meter los dedos por liso.");
         }
     </script>
 
