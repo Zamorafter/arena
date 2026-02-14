@@ -1,1 +1,314 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Document</title>\n    <style>\n        body {\n            background-color: beige;\n            font-family: 'Courier New', Courier, monospace;\n            color: black;\n        }\n        .modal {\n            display: none;\n            position: fixed;\n            z-index: 1000;\n            left: 0;\n            top: 0;\n            width: 100%;\n            height: 100%;\n            overflow: auto;\n            background-color: rgba(0, 0, 0, 0.4);\n        }\n        .modal-content {\n            background-color: #fefefe;\n            margin: 15% auto;\n            padding: 20px;\n            border: 1px solid #888;\n            width: 80%;\n            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);\n        }\n        .close {\n            color: #aaa;\n            float: right;\n            font-size: 28px;\n            font-weight: bold;\n        }\n        .close:hover, .close:focus {\n            color: black;\n            text-decoration: none;\n            cursor: pointer;\n        }\n        /* Original animations */\n        .floating-hearts {\n            animation: float 2s infinite;\n        }\n        .falling-petals {\n            animation: fall 3s infinite;\n        }\n        .twinkling-stars {\n            animation: twinkle 1s infinite;\n        }\n        /* Keyframes for animations */\n        @keyframes float {\n            from { transform: translateY(0); }\n            to { transform: translateY(-10px); }\n        }\n        @keyframes fall {\n            from { transform: translateY(0); }\n            to { transform: translateY(100vh); }\n        }\n        @keyframes twinkle {\n            0% { opacity: 0.2; }\n            50% { opacity: 1; }\n            100% { opacity: 0.2; }\n        }\n    </style>\n</head>\n<body>\n    <h1>Welcome!</h1>\n    <button id="noBtn">No</button>\n    <div id="myModal" class="modal">\n        <div class="modal-content">\n            <span class="close">&times;</span>\n            <p>This is a modal dialog!</p>\n        </div>\n    </div>\n    <script>\n        var modal = document.getElementById('myModal');\n        var btn = document.getElementById('noBtn');\n        var span = document.getElementsByClassName('close')[0];\n        btn.onclick = function() {\n            modal.style.display = 'block';\n        }\n        span.onclick = function() {\n            modal.style.display = 'none';\n        }\n        window.onclick = function(event) {\n            if (event.target == modal) {\n                modal.style.display = 'none';\n            }\n        }\n    <\/script>\n</body>\n</html>\n
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestra Historia 💖</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:radial-gradient(circle at center,#1a001a,#330033,#000);
+overflow:hidden;
+color:white;
+font-family:'Segoe UI',sans-serif;
+text-align:center;
+}
+
+/* INTRO */
+.intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:50;
+animation:fadeIntro 4s forwards;
+}
+
+@keyframes fadeIntro{
+0%{opacity:1;}
+85%{opacity:1;}
+100%{opacity:0;visibility:hidden;}
+}
+
+/* ESTRELLAS */
+.estrella{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:brillar 2s infinite alternate;
+}
+@keyframes brillar{
+from{opacity:0.2;}
+to{opacity:1;}
+}
+
+/* CONTENEDOR PRINCIPAL */
+.container{
+background:rgba(255,0,120,0.1);
+padding:40px;
+border-radius:25px;
+backdrop-filter:blur(20px);
+box-shadow:0 0 80px rgba(255,0,150,0.8);
+animation:fadeIn 2s ease;
+z-index:5;
+}
+
+button{
+padding:12px 25px;
+margin:10px;
+border:none;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.si{background:#ff0077;color:white;}
+.no{background:white;color:#ff0077;}
+
+button:hover{transform:scale(1.1);}
+
+/* MODAL */
+.modal{
+display:none;
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+z-index:100;
+}
+
+.modal-content{
+background:white;
+color:#333;
+padding:30px;
+border-radius:15px;
+width:90%;
+max-width:350px;
+animation:zoom 0.4s ease;
+}
+
+.option{
+background:#ff0077;
+color:white;
+margin-top:15px;
+width:100%;
+}
+
+@keyframes zoom{
+from{transform:scale(0.6);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+/* CARTA ANTIGUA */
+.carta{
+display:none;
+position:relative;
+background:#f4e7c5;
+color:#3b2f1e;
+padding:40px 30px;
+width:90%;
+max-width:420px;
+border-radius:8px;
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
+font-family:"Times New Roman",serif;
+line-height:1.6;
+animation:aparecerCarta 1s ease forwards;
+overflow:hidden;
+word-wrap:break-word;
+overflow-wrap:break-word;
+}
+
+.carta h3{
+margin-bottom:15px;
+font-family:Georgia,serif;
+}
+
+.sello{
+position:absolute;
+bottom:15px;
+right:20px;
+background:#8b0000;
+color:white;
+padding:10px 15px;
+border-radius:50%;
+font-size:12px;
+box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+@keyframes aparecerCarta{
+from{opacity:0; transform:translateY(30px) scale(0.9);}
+to{opacity:1; transform:translateY(0) scale(1);}
+}
+
+/* CORAZONES */
+.corazon{
+position:absolute;
+font-size:20px;
+animation:subir linear infinite;
+}
+@keyframes subir{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
+}
+
+/* PÉTALOS */
+.petalo{
+position:absolute;
+font-size:18px;
+animation:caer linear infinite;
+}
+@keyframes caer{
+0%{transform:translateY(-10vh) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* EXPLOSIÓN */
+.explosion{
+position:absolute;
+font-size:25px;
+animation:explode 1.2s ease forwards;
+}
+@keyframes explode{
+0%{opacity:1;transform:translate(0,0) scale(1);}
+100%{opacity:0;transform:translate(var(--x),var(--y)) scale(2);}
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="intro">
+<h1>Una historia que podría cambiarlo todo... 💖</h1>
+</div>
+
+<div class="container" id="main">
+<h1>Paola 💕<br>¿Quieres ser algo más que amigo?</h1>
+<button class="si" onclick="respuestaSi()">Sí 💖</button>
+<button class="no" onclick="abrirModal()">No 💔</button>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content">
+<h3>¿Por qué no quieres? 😢</h3>
+<button class="option" onclick="mostrarCarta()">1 - Soy muy feo</button>
+<button class="option" onclick="mostrarCarta()">2 - No soy tu tipo</button>
+</div>
+</div>
+
+<!-- CARTA -->
+<div class="carta" id="carta">
+<h3>Mi estimada Paola,</h3>
+<p>
+En estas líneas escritas con sincera emoción,
+deseo recordarte que la amistad es uno de los
+tesoros más nobles que el destino nos concede.
+<br><br>
+No hay distancia, ni duda, ni circunstancia
+que pueda borrar el aprecio genuino que siento.
+<br><br>
+Eres una gran amiga, y mi mayor deseo
+es que esta amistad perdure con la misma
+fuerza con la que late un corazón sincero.
+</p>
+<div class="sello">Amistad Eterna</div>
+</div>
+
+<script>
+
+/* Vibración */
+function vibrar(){
+if(navigator.vibrate){navigator.vibrate(300);}
+}
+
+/* Estrellas */
+for(let i=0;i<100;i++){
+let estrella=document.createElement("div");
+estrella.classList.add("estrella");
+estrella.style.left=Math.random()*100+"vw";
+estrella.style.top=Math.random()*100+"vh";
+document.body.appendChild(estrella);
+}
+
+/* Corazones flotando */
+setInterval(()=>{
+let c=document.createElement("div");
+c.classList.add("corazon");
+c.innerHTML="💗";
+c.style.left=Math.random()*100+"vw";
+c.style.bottom="-20px";
+c.style.animationDuration=(Math.random()*4+4)+"s";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),8000);
+},500);
+
+/* Pétalos */
+setInterval(()=>{
+let p=document.createElement("div");
+p.classList.add("petalo");
+p.innerHTML="🌸";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(Math.random()*6+5)+"s";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),10000);
+},900);
+
+/* Modal */
+function abrirModal(){
+document.getElementById("modal").style.display="flex";
+}
+
+function mostrarCarta(){
+document.getElementById("modal").style.display="none";
+document.getElementById("main").style.display="none";
+document.getElementById("carta").style.display="block";
+vibrar();
+}
+
+/* Explosión */
+function explosion(){
+vibrar();
+for(let i=0;i<50;i++){
+let heart=document.createElement("div");
+heart.classList.add("explosion");
+heart.innerHTML="💖";
+heart.style.left="50%";
+heart.style.top="50%";
+heart.style.setProperty("--x",(Math.random()*600-300)+"px");
+heart.style.setProperty("--y",(Math.random()*600-300)+"px");
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),1200);
+}
+}
+
+function respuestaSi(){
+document.getElementById("main").innerHTML=
+"<h1>💘 Entonces que comience nuestra historia 💘</h1>";
+explosion();
+}
+</script>
+
+</body>
+</html>
