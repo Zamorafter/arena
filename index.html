@@ -3,240 +3,248 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Historia Romántica 💖</title>
+<title>Nuestra Historia 💖</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
 
 body{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#ff4e8a,#ff2e63);
-    overflow:hidden;
-    color:white;
-    text-align:center;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:radial-gradient(circle at center,#1a001a,#330033,#000);
+overflow:hidden;
+color:white;
+text-align:center;
 }
 
-/* Pantalla cinematográfica */
-.cinema{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:black;
-    top:0;
-    left:0;
-    z-index:10;
-    animation:fadeOut 2s forwards;
+/* ESTRELLAS */
+.estrella{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:brillar 2s infinite alternate;
+}
+@keyframes brillar{
+from{opacity:0.2;}
+to{opacity:1;}
 }
 
-@keyframes fadeOut{
-    0%{opacity:1;}
-    100%{opacity:0; visibility:hidden;}
+/* INTRO */
+.intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:50;
+animation:fadeIntro 4s forwards;
+}
+@keyframes fadeIntro{
+0%{opacity:1;}
+85%{opacity:1;}
+100%{opacity:0;visibility:hidden;}
 }
 
+/* CONTENEDOR */
 .container{
-    background:rgba(255,255,255,0.15);
-    padding:40px;
-    border-radius:25px;
-    backdrop-filter:blur(15px);
-    box-shadow:0 0 40px rgba(0,0,0,0.4);
-    animation:fadeIn 2s ease;
-    position:relative;
-    z-index:2;
-}
-
-h1{
-    margin-bottom:30px;
-    font-size:28px;
+background:rgba(255,0,120,0.1);
+padding:40px;
+border-radius:25px;
+backdrop-filter:blur(20px);
+box-shadow:0 0 80px rgba(255,0,150,0.8);
+animation:fadeIn 2s ease;
+z-index:5;
 }
 
 button{
-    padding:12px 25px;
-    margin:10px;
-    border:none;
-    border-radius:30px;
-    font-size:18px;
-    cursor:pointer;
-    transition:0.3s;
+padding:12px 25px;
+margin:10px;
+border:none;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
 }
 
-.si{
-    background:#ff2e63;
-    color:white;
-}
+.si{background:#ff0077;color:white;}
+.no{background:white;color:#ff0077;}
 
-.no{
-    background:white;
-    color:#ff2e63;
-}
+button:hover{transform:scale(1.1);}
 
-button:hover{
-    transform:scale(1.1);
-}
-
-/* Modal */
-.modal{
-    display:none;
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.6);
-    justify-content:center;
-    align-items:center;
-    z-index:5;
-}
-
-.modal-content{
-    background:white;
-    color:#333;
-    padding:30px;
-    border-radius:20px;
-    animation:zoom 0.4s ease;
-}
-
-.option{
-    background:#ff4e8a;
-    color:white;
-    margin:10px;
-}
-
-/* Carta */
+/* CARTA */
 .carta{
-    display:none;
-    position:relative;
-    width:300px;
-    height:200px;
-    background:#fff;
-    border-radius:10px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.5);
-    color:#333;
-    padding:20px;
-    animation:openLetter 1s ease forwards;
+display:none;
+background:white;
+color:#333;
+padding:30px;
+border-radius:15px;
+width:320px;
+box-shadow:0 10px 40px rgba(0,0,0,0.6);
+animation:zoom 1s ease forwards;
 }
 
-@keyframes openLetter{
-    0%{transform:scale(0.5) rotateX(90deg);}
-    100%{transform:scale(1) rotateX(0);}
+@keyframes zoom{
+from{transform:scale(0.5);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+/* Máquina escribir */
+.typing{
+border-right:2px solid #ff0077;
+white-space:nowrap;
+overflow:hidden;
+width:0;
+animation:typing 5s steps(50,end) forwards;
+}
+@keyframes typing{
+from{width:0;}
+to{width:100%;}
 }
 
 /* Corazones flotando */
 .corazon{
-    position:absolute;
-    color:#fff;
-    font-size:20px;
-    animation:subir linear infinite;
+position:absolute;
+font-size:20px;
+animation:subir linear infinite;
+}
+@keyframes subir{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
 }
 
-@keyframes subir{
-    0%{transform:translateY(0); opacity:1;}
-    100%{transform:translateY(-100vh); opacity:0;}
+/* Pétalos */
+.petalo{
+position:absolute;
+font-size:18px;
+animation:caer linear infinite;
+}
+@keyframes caer{
+0%{transform:translateY(-10vh) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
 }
 
 /* Explosión */
 .explosion{
-    position:absolute;
-    font-size:25px;
-    animation:explode 1s ease forwards;
+position:absolute;
+font-size:25px;
+animation:explode 1.2s ease forwards;
 }
-
 @keyframes explode{
-    0%{opacity:1; transform:translate(0,0) scale(1);}
-    100%{opacity:0; transform:translate(var(--x),var(--y)) scale(2);}
+0%{opacity:1;transform:translate(0,0) scale(1);}
+100%{opacity:0;transform:translate(var(--x),var(--y)) scale(2);
+}
 }
 
 @keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-@keyframes zoom{
-    from{transform:scale(0.5);}
-    to{transform:scale(1);}
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="cinema"></div>
+<audio id="musica" autoplay loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
 
-<div class="container" id="main">
-    <h1>Paola 💖<br>¿Quieres ser algo más que amigo?</h1>
-    <button class="si" onclick="respuestaSi()">Sí 💕</button>
-    <button class="no" onclick="mostrarModal()">No 💔</button>
+<div class="intro">
+<h1>Una historia que podría cambiarlo todo... 💖</h1>
 </div>
 
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <h2>¿Por qué no quieres? 😢</h2>
-        <button class="option" onclick="mostrarPoema()">1 - Soy muy feo</button>
-        <button class="option" onclick="mostrarPoema()">2 - No soy tu tipo</button>
-    </div>
+<div class="container" id="main">
+<h1>Paola 💕<br>¿Quieres ser algo más que amigo?</h1>
+<button class="si" onclick="respuestaSi()">Sí 💖</button>
+<button class="no" onclick="mostrarCarta()">No 💔</button>
 </div>
 
 <div class="carta" id="carta">
-    <h3>No seas boba Pao 💞</h3>
-    <p>
-        La amistad es un lazo eterno,<br>
-        que ni el tiempo puede borrar.<br>
-        Eres una gran amiga,<br>
-        y quiero que esta amistad dure para siempre 💖
-    </p>
+<h3>No seas boba Pao 💞</h3>
+<p>
+La amistad es un tesoro que no se pierde,<br>
+es risa, apoyo y compañía eterna.<br><br>
+<span class="typing">
+Eres una gran amiga y quiero que esta amistad dure para siempre 💖
+</span>
+</p>
 </div>
 
 <script>
 
-// Corazones suaves flotando
-function crearCorazon(){
-    const c=document.createElement("div");
-    c.classList.add("corazon");
-    c.innerHTML="❤";
-    c.style.left=Math.random()*100+"vw";
-    c.style.bottom="-20px";
-    c.style.animationDuration=(Math.random()*3+4)+"s";
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),7000);
+// Vibración móvil
+function vibrar(){
+if(navigator.vibrate){
+navigator.vibrate(300);
 }
-setInterval(crearCorazon,400);
-
-// Modal
-function mostrarModal(){
-    document.getElementById("modal").style.display="flex";
 }
 
-function mostrarPoema(){
-    document.getElementById("modal").style.display="none";
-    document.getElementById("main").style.display="none";
-    document.getElementById("carta").style.display="block";
+// Estrellas
+for(let i=0;i<100;i++){ 
+let estrella=document.createElement("div");
+estrella.classList.add("estrella");
+estrella.style.left=Math.random()*100+"vw";
+estrella.style.top=Math.random()*100+"vh";
+document.body.appendChild(estrella);
 }
 
-// Explosión romántica
+// Corazones flotando
+setInterval(()=>{
+let c=document.createElement("div");
+c.classList.add("corazon");
+c.innerHTML="💗";
+c.style.left=Math.random()*100+"vw";
+c.style.bottom="-20px";
+c.style.animationDuration=(Math.random()*4+4)+"s";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),8000);
+},500);
+
+// Pétalos
+setInterval(() => {
+let p = document.createElement("div");
+p.classList.add("petalo");
+p.innerHTML = "🌸";
+p.style.left = Math.random() * 100 + "vw";
+p.style.animationDuration = (Math.random() * 6 + 5) + "s";
+document.body.appendChild(p);
+setTimeout(() => p.remove(), 10000);
+}, 900);
+
+// Mostrar carta
+function mostrarCarta(){
+document.getElementById("main").style.display="none";
+document.getElementById("carta").style.display="block";
+vibrar();
+}
+
+// Explosión con sonido
 function explosion(){
-    for(let i=0;i<30;i++){  
-        const heart=document.createElement("div");
-        heart.classList.add("explosion");
-        heart.innerHTML="💖";
-        heart.style.left="50%";
-        heart.style.top="50%";
-        heart.style.setProperty("--x",(Math.random()*400-200)+"px");
-        heart.style.setProperty("--y",(Math.random()*400-200)+"px");
-        document.body.appendChild(heart);
-        setTimeout(()=>heart.remove(),1000);
-    }
+vibrar();
+let sonido=new Audio("https://assets.mixkit.co/sfx/preview/mixkit-romantic-pop-2019.mp3");
+sonido.play();
+for(let i=0;i<50;i++){
+let heart=document.createElement("div");
+heart.classList.add("explosion");
+heart.innerHTML="💖";
+heart.style.left="50%";
+heart.style.top="50%";
+heart.style.setProperty("--x",(Math.random()*600-300)+"px");
+heart.style.setProperty("--y",(Math.random()*600-300)+"px");
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),1200);
+}
 }
 
 // Respuesta SI
 function respuestaSi(){
-    document.getElementById("main").innerHTML=
-    "<h1>💘 Sabía que dirías que sí 💘<br>Feliz San Valentín ✨</h1>";
-    explosion();
+document.getElementById("main").innerHTML=
+"<h1>💘 Entonces que comience nuestra historia 💘</h1>";
+explosion();
 }
 </script>
 
