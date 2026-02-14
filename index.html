@@ -1,42 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nuestra Historia 💖</title>
+<title>Para Paola 💖</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-height:100vh;
+min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 background:radial-gradient(circle at center,#1a001a,#330033,#000);
-overflow:hidden;
+overflow-x:hidden;
 color:white;
 font-family:'Segoe UI',sans-serif;
 text-align:center;
-}
-
-/* INTRO */
-.intro{
-position:fixed;
-width:100%;
-height:100%;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:50;
-animation:fadeIntro 4s forwards;
-}
-@keyframes fadeIntro{
-0%{opacity:1;}
-85%{opacity:1;}
-100%{opacity:0;visibility:hidden;}
+position:relative;
 }
 
 /* ESTRELLAS */
@@ -52,18 +34,29 @@ from{opacity:0.2;}
 to{opacity:1;}
 }
 
-/* CONTENEDOR */
+/* CORAZONES */
+.corazon{
+position:absolute;
+font-size:20px;
+animation:subir linear infinite;
+}
+@keyframes subir{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
+}
+
+/* CONTENEDOR PRINCIPAL */
 .container{
-background:rgba(255,0,120,0.1);
+background:rgba(255,0,120,0.12);
 padding:40px;
 border-radius:25px;
 backdrop-filter:blur(20px);
-box-shadow:0 0 80px rgba(255,0,150,0.8);
+box-shadow:0 0 60px rgba(255,0,150,0.6);
 animation:fadeIn 2s ease;
 z-index:5;
+max-width:90%;
 }
 
-/* BOTONES */
 button{
 padding:12px 25px;
 margin:10px;
@@ -73,9 +66,13 @@ font-size:18px;
 cursor:pointer;
 transition:0.3s;
 }
+
 .si{background:#ff0077;color:white;}
 .no{background:white;color:#ff0077;}
-button:hover{transform:scale(1.1);}
+
+button:hover{
+transform:scale(1.1);
+}
 
 /* MODAL */
 .modal{
@@ -88,6 +85,7 @@ justify-content:center;
 align-items:center;
 z-index:100;
 }
+
 .modal-content{
 background:white;
 color:#333;
@@ -96,6 +94,7 @@ border-radius:15px;
 width:90%;
 max-width:350px;
 }
+
 .option{
 background:#ff0077;
 color:white;
@@ -103,22 +102,24 @@ margin-top:15px;
 width:100%;
 }
 
-/* CARTA */
+/* CARTA ANTIGUA */
 .carta{
 display:none;
 position:relative;
 background:#f4e7c5;
 color:#3b2f1e;
-padding:40px 30px;
+padding:40px 30px 70px 30px;
 width:90%;
 max-width:420px;
 border-radius:8px;
 box-shadow:0 15px 40px rgba(0,0,0,0.6);
 font-family:"Times New Roman",serif;
-line-height:1.6;
+line-height:1.7;
 animation:aparecerCarta 1s ease forwards;
 overflow:hidden;
+word-wrap:break-word;
 }
+
 @keyframes aparecerCarta{
 from{opacity:0; transform:translateY(30px) scale(0.9);}
 to{opacity:1; transform:translateY(0) scale(1);}
@@ -137,9 +138,14 @@ border-radius:50%;
 font-size:12px;
 cursor:pointer;
 box-shadow:0 5px 15px rgba(0,0,0,0.4);
+transition:0.3s;
 }
 
-/* SECCIÓN IMAGEN */
+.sello-btn:hover{
+transform:scale(1.1);
+}
+
+/* SECCIÓN FINAL */
 .seccion-final{
 display:none;
 margin-top:20px;
@@ -149,9 +155,12 @@ animation:fadeIn 1s ease;
 .seccion-final img{
 width:100%;
 max-width:300px;
-border-radius:10px;
-margin-bottom:15px;
+height:auto;
+display:block;
+margin:0 auto 15px auto;
+border-radius:12px;
 box-shadow:0 10px 25px rgba(0,0,0,0.5);
+object-fit:cover;
 }
 
 .poema{
@@ -164,34 +173,14 @@ font-weight:bold;
 font-size:18px;
 }
 
-/* ANIMACIONES */
 @keyframes fadeIn{
 from{opacity:0;}
 to{opacity:1;}
-}
-
-/* CORAZONES */
-.corazon{
-position:absolute;
-font-size:20px;
-animation:subir linear infinite;
-}
-@keyframes subir{
-0%{transform:translateY(0);opacity:1;}
-100%{transform:translateY(-100vh);opacity:0;}
 }
 </style>
 </head>
 
 <body>
-
-<audio autoplay loop>
-<source src="musica.mp3" type="audio/mpeg">
-</audio>
-
-<div class="intro">
-<h1>Una historia que podría cambiarlo todo... 💖</h1>
-</div>
 
 <div class="container" id="main">
 <h1>Paola 💕<br>¿Quieres ser algo más que amigo?</h1>
@@ -210,37 +199,36 @@ animation:subir linear infinite;
 <div class="carta" id="carta">
 <h3>Mi estimada Paola,</h3>
 <p>
-La amistad es un tesoro eterno,
-un lazo que el tiempo fortalece.
-Es risa en días grises,
-y apoyo cuando el alma lo necesita.
+La amistad es un lazo noble que el tiempo fortalece,
+un refugio sincero donde siempre se encuentra apoyo.
+Eres una gran amiga, y deseo que esta amistad
+permanezca firme, con respeto y cariño verdadero.
 </p>
 
 <button class="sello-btn" onclick="mostrarImagen()">Amistad Eterna</button>
 
 <div class="seccion-final" id="final">
-<img src="paola.jpg" alt="Paola">
+<img src="./paola.jpg" alt="Paola">
 
 <div class="poema">
-En cada recuerdo compartido<br>
-vive una historia hermosa,<br>
-porque una verdadera amiga<br>
-es luz cuando todo reposa.<br><br>
-Que esta amistad siga creciendo,<br>
-con cariño sincero y profundo,<br>
+En cada risa compartida<br>
+vive un recuerdo eterno,<br>
+porque una amistad sincera<br>
+es un regalo del cielo.<br><br>
+Que el tiempo nunca borre<br>
+la confianza y el cariño,<br>
 porque tenerte como amiga<br>
-es uno de los regalos más lindos del mundo.
+es un tesoro infinito.
 </div>
 
 <div class="firma">DORA</div>
 </div>
-
 </div>
 
 <script>
 
 /* Estrellas */
-for(let i=0;i<100;i++){
+for(let i=0;i<80;i++){
 let estrella=document.createElement("div");
 estrella.classList.add("estrella");
 estrella.style.left=Math.random()*100+"vw";
