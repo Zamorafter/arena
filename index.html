@@ -32,7 +32,6 @@ align-items:center;
 z-index:50;
 animation:fadeIntro 4s forwards;
 }
-
 @keyframes fadeIntro{
 0%{opacity:1;}
 85%{opacity:1;}
@@ -52,7 +51,7 @@ from{opacity:0.2;}
 to{opacity:1;}
 }
 
-/* CONTENEDOR PRINCIPAL */
+/* CONTENEDOR */
 .container{
 background:rgba(255,0,120,0.1);
 padding:40px;
@@ -63,6 +62,7 @@ animation:fadeIn 2s ease;
 z-index:5;
 }
 
+/* BOTONES */
 button{
 padding:12px 25px;
 margin:10px;
@@ -72,10 +72,8 @@ font-size:18px;
 cursor:pointer;
 transition:0.3s;
 }
-
 .si{background:#ff0077;color:white;}
 .no{background:white;color:#ff0077;}
-
 button:hover{transform:scale(1.1);}
 
 /* MODAL */
@@ -89,7 +87,6 @@ justify-content:center;
 align-items:center;
 z-index:100;
 }
-
 .modal-content{
 background:white;
 color:#333;
@@ -97,9 +94,7 @@ padding:30px;
 border-radius:15px;
 width:90%;
 max-width:350px;
-animation:zoom 0.4s ease;
 }
-
 .option{
 background:#ff0077;
 color:white;
@@ -107,12 +102,7 @@ margin-top:15px;
 width:100%;
 }
 
-@keyframes zoom{
-from{transform:scale(0.6);opacity:0;}
-to{transform:scale(1);opacity:1;}
-}
-
-/* CARTA ANTIGUA */
+/* CARTA */
 .carta{
 display:none;
 position:relative;
@@ -127,30 +117,56 @@ font-family:"Times New Roman",serif;
 line-height:1.6;
 animation:aparecerCarta 1s ease forwards;
 overflow:hidden;
-word-wrap:break-word;
-overflow-wrap:break-word;
+}
+@keyframes aparecerCarta{
+from{opacity:0; transform:translateY(30px) scale(0.9);}
+to{opacity:1; transform:translateY(0) scale(1);}
 }
 
-.carta h3{
-margin-bottom:15px;
-font-family:Georgia,serif;
-}
-
-.sello{
+/* BOTÓN SELLO */
+.sello-btn{
 position:absolute;
 bottom:15px;
 right:20px;
 background:#8b0000;
 color:white;
 padding:10px 15px;
+border:none;
 border-radius:50%;
 font-size:12px;
+cursor:pointer;
 box-shadow:0 5px 15px rgba(0,0,0,0.4);
 }
 
-@keyframes aparecerCarta{
-from{opacity:0; transform:translateY(30px) scale(0.9);}
-to{opacity:1; transform:translateY(0) scale(1);}
+/* SECCIÓN IMAGEN */
+.seccion-final{
+display:none;
+margin-top:20px;
+animation:fadeIn 1s ease;
+}
+
+.seccion-final img{
+width:100%;
+max-width:300px;
+border-radius:10px;
+margin-bottom:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.5);
+}
+
+.poema{
+font-style:italic;
+}
+
+.firma{
+margin-top:15px;
+font-weight:bold;
+font-size:18px;
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 /* CORAZONES */
@@ -162,33 +178,6 @@ animation:subir linear infinite;
 @keyframes subir{
 0%{transform:translateY(0);opacity:1;}
 100%{transform:translateY(-100vh);opacity:0;}
-}
-
-/* PÉTALOS */
-.petalo{
-position:absolute;
-font-size:18px;
-animation:caer linear infinite;
-}
-@keyframes caer{
-0%{transform:translateY(-10vh) rotate(0deg);}
-100%{transform:translateY(110vh) rotate(360deg);}
-}
-
-/* EXPLOSIÓN */
-.explosion{
-position:absolute;
-font-size:25px;
-animation:explode 1.2s ease forwards;
-}
-@keyframes explode{
-0%{opacity:1;transform:translate(0,0) scale(1);}
-100%{opacity:0;transform:translate(var(--x),var(--y)) scale(2);}
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
 }
 </style>
 </head>
@@ -209,7 +198,6 @@ to{opacity:1;transform:translateY(0);}
 <button class="no" onclick="abrirModal()">No 💔</button>
 </div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
 <div class="modal-content">
 <h3>¿Por qué no quieres? 😢</h3>
@@ -218,30 +206,37 @@ to{opacity:1;transform:translateY(0);}
 </div>
 </div>
 
-<!-- CARTA -->
 <div class="carta" id="carta">
 <h3>Mi estimada Paola,</h3>
 <p>
-En estas líneas escritas con sincera emoción,
-deseo recordarte que la amistad es uno de los
-tesoros más nobles que el destino nos concede.
-<br><br>
-No hay distancia, ni duda, ni circunstancia
-que pueda borrar el aprecio genuino que siento.
-<br><br>
-Eres una gran amiga, y mi mayor deseo
-es que esta amistad perdure con la misma
-fuerza con la que late un corazón sincero.
+La amistad es un tesoro eterno,
+un lazo que el tiempo fortalece.
+Es risa en días grises,
+y apoyo cuando el alma lo necesita.
 </p>
-<div class="sello">Amistad Eterna</div>
+
+<button class="sello-btn" onclick="mostrarImagen()">Amistad Eterna</button>
+
+<div class="seccion-final" id="final">
+<img src="paola.jpg" alt="Paola">
+
+<div class="poema">
+En cada recuerdo compartido<br>
+vive una historia hermosa,<br>
+porque una verdadera amiga<br>
+es luz cuando todo reposa.<br><br>
+Que esta amistad siga creciendo,<br>
+con cariño sincero y profundo,<br>
+porque tenerte como amiga<br>
+es uno de los regalos más lindos del mundo.
+</div>
+
+<div class="firma">DORA</div>
+</div>
+
 </div>
 
 <script>
-
-/* Vibración */
-function vibrar(){
-if(navigator.vibrate){navigator.vibrate(300);}
-}
 
 /* Estrellas */
 for(let i=0;i<100;i++){
@@ -252,7 +247,7 @@ estrella.style.top=Math.random()*100+"vh";
 document.body.appendChild(estrella);
 }
 
-/* Corazones flotando */
+/* Corazones */
 setInterval(()=>{
 let c=document.createElement("div");
 c.classList.add("corazon");
@@ -264,18 +259,7 @@ document.body.appendChild(c);
 setTimeout(()=>c.remove(),8000);
 },500);
 
-/* Pétalos */
-setInterval(()=>{
-let p=document.createElement("div");
-p.classList.add("petalo");
-p.innerHTML="🌸";
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=(Math.random()*6+5)+"s";
-document.body.appendChild(p);
-setTimeout(()=>p.remove(),10000);
-},900);
-
-/* Modal */
+/* Funciones */
 function abrirModal(){
 document.getElementById("modal").style.display="flex";
 }
@@ -284,29 +268,15 @@ function mostrarCarta(){
 document.getElementById("modal").style.display="none";
 document.getElementById("main").style.display="none";
 document.getElementById("carta").style.display="block";
-vibrar();
 }
 
-/* Explosión */
-function explosion(){
-vibrar();
-for(let i=0;i<50;i++){
-let heart=document.createElement("div");
-heart.classList.add("explosion");
-heart.innerHTML="💖";
-heart.style.left="50%";
-heart.style.top="50%";
-heart.style.setProperty("--x",(Math.random()*600-300)+"px");
-heart.style.setProperty("--y",(Math.random()*600-300)+"px");
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),1200);
-}
+function mostrarImagen(){
+document.getElementById("final").style.display="block";
 }
 
 function respuestaSi(){
 document.getElementById("main").innerHTML=
 "<h1>💘 Entonces que comience nuestra historia 💘</h1>";
-explosion();
 }
 </script>
 
