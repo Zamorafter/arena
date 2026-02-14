@@ -1,133 +1,244 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQUAD MANAGEMENT - ANTI-RATAS</title>
-    <style>
-        :root {
-            --ab-orange: #ff4d00;
-            --dark-bg: #0a0a0a;
-            --panel-bg: #151515;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Historia Romántica 💖</title>
 
-        body {
-            background-color: var(--dark-bg);
-            color: #eeeeee;
-            font-family: 'Oswald', sans-serif; /* Si no tienes Oswald, usará sans-serif */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-transform: uppercase;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
 
-        .interface {
-            width: 90%;
-            max-width: 550px;
-            background: var(--panel-bg);
-            border: 1px solid #333;
-            border-top: 4px solid var(--ab-orange);
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff4e8a,#ff2e63);
+    overflow:hidden;
+    color:white;
+    text-align:center;
+}
 
-        .header {
-            border-bottom: 1px solid #444;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
+/* Pantalla cinematográfica */
+.cinema{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    top:0;
+    left:0;
+    z-index:10;
+    animation:fadeOut 2s forwards;
+}
 
-        .status-red {
-            color: #ff3333;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-        }
+@keyframes fadeOut{
+    0%{opacity:1;}
+    100%{opacity:0; visibility:hidden;}
+}
 
-        h1 {
-            margin: 5px 0;
-            font-size: 2rem;
-            color: var(--ab-orange);
-        }
+.container{
+    background:rgba(255,255,255,0.15);
+    padding:40px;
+    border-radius:25px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 0 40px rgba(0,0,0,0.4);
+    animation:fadeIn 2s ease;
+    position:relative;
+    z-index:2;
+}
 
-        .warning-text {
-            line-height: 1.5;
-            font-size: 1.1rem;
-            color: #bbb;
-        }
+h1{
+    margin-bottom:30px;
+    font-size:28px;
+}
 
-        .boche-box {
-            background: rgba(255, 77, 0, 0.05);
-            border: 1px solid rgba(255, 77, 0, 0.2);
-            padding: 15px;
-            margin: 20px 0;
-            color: #fff;
-        }
+button{
+    padding:12px 25px;
+    margin:10px;
+    border:none;
+    border-radius:30px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
 
-        .highlight {
-            color: var(--ab-orange);
-            font-weight: bold;
-        }
+.si{
+    background:#ff2e63;
+    color:white;
+}
 
-        .btn-kick {
-            width: 100%;
-            background: var(--ab-orange);
-            color: black;
-            border: none;
-            padding: 15px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+.no{
+    background:white;
+    color:#ff2e63;
+}
 
-        .btn-kick:hover {
-            background: #e64500;
-            transform: scale(1.02);
-        }
+button:hover{
+    transform:scale(1.1);
+}
 
-        .footer {
-            margin-top: 15px;
-            font-size: 0.7rem;
-            color: #555;
-            text-align: right;
-        }
-    </style>
+/* Modal */
+.modal{
+    display:none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+    z-index:5;
+}
+
+.modal-content{
+    background:white;
+    color:#333;
+    padding:30px;
+    border-radius:20px;
+    animation:zoom 0.4s ease;
+}
+
+.option{
+    background:#ff4e8a;
+    color:white;
+    margin:10px;
+}
+
+/* Carta */
+.carta{
+    display:none;
+    position:relative;
+    width:300px;
+    height:200px;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    color:#333;
+    padding:20px;
+    animation:openLetter 1s ease forwards;
+}
+
+@keyframes openLetter{
+    0%{transform:scale(0.5) rotateX(90deg);}
+    100%{transform:scale(1) rotateX(0);}
+}
+
+/* Corazones flotando */
+.corazon{
+    position:absolute;
+    color:#fff;
+    font-size:20px;
+    animation:subir linear infinite;
+}
+
+@keyframes subir{
+    0%{transform:translateY(0); opacity:1;}
+    100%{transform:translateY(-100vh); opacity:0;}
+}
+
+/* Explosión */
+.explosion{
+    position:absolute;
+    font-size:25px;
+    animation:explode 1s ease forwards;
+}
+
+@keyframes explode{
+    0%{opacity:1; transform:translate(0,0) scale(1);}
+    100%{opacity:0; transform:translate(var(--x),var(--y)) scale(2);}
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes zoom{
+    from{transform:scale(0.5);}
+    to{transform:scale(1);}
+}
+</style>
 </head>
+
 <body>
 
-    <div class="interface">
-        <div class="header">
-            <span class="status-red">● ALERTA DE REPORTE: COMPORTAMIENTO TÓXICO</span>
-            <h1>OBJETIVO: ENMANUEL</h1>
-        </div>
+<div class="cinema"></div>
 
-        <div class="warning-text">
-            <p>Loco, ya el coro se cansó de tu mala fe. Cada vez que entramos a la zona, tú eres el primero que corre a <strong>robarse las misceláneas</strong> que no son tuyas.</p>
-            
-            <p>Sigue de vivo, que <span class="highlight">para la próxima te vamos a dar una galleta</span> que te va a quitar las ganas de lootear ajeno.</p>
-        </div>
+<div class="container" id="main">
+    <h1>Paola 💖<br>¿Quieres ser algo más que amigo?</h1>
+    <button class="si" onclick="respuestaSi()">Sí 💕</button>
+    <button class="no" onclick="mostrarModal()">No 💔</button>
+</div>
 
-        <div class="boche-box">
-            "Enmanuel, deja de ser tan <strong>MAMAÑEMA</strong>. Aquí se viene a meter mano en equipo, no a ser una rata de alcantarilla. Estás fuera."
-        </div>
-
-        <button class="btn-kick" onclick="darBala()">
-            EXPULSAR RATA DEL SQUAD
-        </button>
-
-        <div class="footer">
-            SISTEMA DE SEGURIDAD DARK ZONE | DOMINICAN SQUAD ONLY
-        </div>
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <h2>¿Por qué no quieres? 😢</h2>
+        <button class="option" onclick="mostrarPoema()">1 - Soy muy feo</button>
+        <button class="option" onclick="mostrarPoema()">2 - No soy tu tipo</button>
     </div>
+</div>
 
-    <script>
-        function darBala() {
-            // El mensaje que pediste
-            alert("ENMANUEL ELIMINADO. ¡Y te vamos a meter los dedos!");
-        }
-    </script>
+<div class="carta" id="carta">
+    <h3>No seas boba Pao 💞</h3>
+    <p>
+        La amistad es un lazo eterno,<br>
+        que ni el tiempo puede borrar.<br>
+        Eres una gran amiga,<br>
+        y quiero que esta amistad dure para siempre 💖
+    </p>
+</div>
+
+<script>
+
+// Corazones suaves flotando
+function crearCorazon(){
+    const c=document.createElement("div");
+    c.classList.add("corazon");
+    c.innerHTML="❤";
+    c.style.left=Math.random()*100+"vw";
+    c.style.bottom="-20px";
+    c.style.animationDuration=(Math.random()*3+4)+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),7000);
+}
+setInterval(crearCorazon,400);
+
+// Modal
+function mostrarModal(){
+    document.getElementById("modal").style.display="flex";
+}
+
+function mostrarPoema(){
+    document.getElementById("modal").style.display="none";
+    document.getElementById("main").style.display="none";
+    document.getElementById("carta").style.display="block";
+}
+
+// Explosión romántica
+function explosion(){
+    for(let i=0;i<30;i++){  
+        const heart=document.createElement("div");
+        heart.classList.add("explosion");
+        heart.innerHTML="💖";
+        heart.style.left="50%";
+        heart.style.top="50%";
+        heart.style.setProperty("--x",(Math.random()*400-200)+"px");
+        heart.style.setProperty("--y",(Math.random()*400-200)+"px");
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),1000);
+    }
+}
+
+// Respuesta SI
+function respuestaSi(){
+    document.getElementById("main").innerHTML=
+    "<h1>💘 Sabía que dirías que sí 💘<br>Feliz San Valentín ✨</h1>";
+    explosion();
+}
+</script>
 
 </body>
 </html>
